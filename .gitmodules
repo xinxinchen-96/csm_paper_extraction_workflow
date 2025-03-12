@@ -1,0 +1,3 @@
+[submodule "libs/csmInputTemplate"]
+	path = libs/csmInputTemplate
+	url = https://github.com/leroy-bml/csmInputTemplate
