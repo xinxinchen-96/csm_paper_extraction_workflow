@@ -1,0 +1,34 @@
+Based on the information provided regarding the Honourable Eugene F. Whelan Experimental Farm, here is a consolidated and integrated summary of the specified variables, along with explanations where necessary:
+
+### Integrated Summary of Extracted Values
+
+- **REP_NO**: Not explicitly mentioned in the publication. This variable typically refers to the replication number in experimental designs, which is crucial for statistical analysis but was not provided.
+
+- **SITE_NAME**: Honourable Eugene F. Whelan Experimental Farm, Agricultural and Agri-Food Canada, located in Woodslee, Ontario, Canada. This is the official name of the research site where the experiments were conducted.
+
+- **SITE_TYPE**: Experimental farm. While the specific type of experimental farm is not detailed, it is understood that this site is dedicated to agricultural research and experimentation.
+
+- **MGMT_TYPE**: 
+  - **Continuous Corn with Fertilization (CC-F)**: This management type involves growing corn continuously with the application of fertilizers, which is expected to enhance crop yield and soil fertility.
+  - **Continuous Corn without Fertilization (CC-NF)**: This management type involves growing corn continuously without the application of fertilizers, allowing for the study of the effects of nutrient absence on crop performance.
+
+- **EXP_YEAR**: 
+  - The experimental farm was established in **1959**.
+  - Data collection years include **1961, 1975, 1986, 2000, and up to 2008**. These years indicate when significant data was gathered for analysis.
+
+- **EXP_DUR**: The duration of the experiment spans **50 years**, from **1959 to 2008**. This long-term study allows for the observation of trends and changes in agricultural practices over time.
+
+- **EXP_DUR_SEAS**: Approximately **200 seasons**. This is calculated based on the assumption of four growing seasons per year over the 50-year duration (50 years x 4 seasons/year = 200 seasons).
+
+- **PLTR#**: Not explicitly mentioned. This variable typically refers to the plot number within the experimental design, which is essential for identifying specific experimental units.
+
+- **PLTLN**: **76.2 m** (length of each plot). This measurement indicates the size of each experimental plot, which is important for understanding the scale of the experiments.
+
+- **PLTWI**: **12.2 m** (width of each plot). This measurement, along with the length, helps define the area of each plot used in the experiments.
+
+### Additional Notes
+- The absence of certain variables such as REP_NO and PLTR# suggests that the publication may not have provided detailed experimental design information, which is often critical for replicability and statistical analysis.
+- The management types (CC-F and CC-NF) are particularly relevant for understanding the impact of fertilization on corn yield and soil health, which could be a focal point of the research conducted at this experimental farm.
+- The long duration of the study (50 years) allows for comprehensive insights into the effects of different management practices over time, making it a valuable resource for agricultural research.
+
+If you require further analysis or specific insights based on this integrated summary, please let me know!
