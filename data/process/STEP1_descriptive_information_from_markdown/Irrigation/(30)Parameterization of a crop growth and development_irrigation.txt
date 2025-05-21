@@ -1,0 +1,1 @@
+The study described in the document includes scenarios of both irrigated and rainfed agriculture. It covers the use of the CropSyst model to evaluate the yield of continuous rainfed maize under alternative management options and also mentions irrigation planning within a simulation study context for Northern Italy【4:0†Parameterization of a crop growth and development.pdf】.
