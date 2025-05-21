@@ -1,0 +1,5 @@
+The experiment design in this study focused on evaluating the effects of elevated temperatures on wheat growth by using a combination of supplemental infrared heating and natural seasonal variations in temperature due to different planting dates. The study was conducted over a two-year period at the University of Arizona Maricopa Agricultural Center. Wheat was planted on 12 different dates from September to May to capture a wide range of temperatures【4:0†source】.
+
+The experimental setup included utilizing an infrared heating apparatus arranged in a hexagonal pattern to provide supplemental heating for six of the twelve planting dates, increasing the canopy temperature by 1.3°C during the day and 2.7°C at night【4:5†source】. The design for the heating study was a 3 by 3 Latin square, with three treatments: heated plots, reference plots with non-operable heaters, and control plots with no heaters【4:1†source】.
+
+Measures such as grain yield, kernel weight, and other yield components were monitored and analyzed in relation to the variations in temperature experienced during the different growth phases of the crops【4:0†source】【4:1†source】【4:6†source】.

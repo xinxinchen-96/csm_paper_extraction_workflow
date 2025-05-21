@@ -1,0 +1,17 @@
+The study was designed to simulate and evaluate long-term maize production using the DSSAT-CERES-Maize model. The experiment was conducted at the Honourable Eugene F. Whelan Experimental Farm in Woodslee, Ontario, starting in 1959. It aimed to assess the impacts of fertilization, crop rotation, and weather on crop yield and soil properties over a period of 50 years.
+
+Key elements of the experimental design included:
+
+1. **Treatments**: The study involved two primary treatments for maize: continuous maize production with fertilization (CC-F) and without fertilization (CC-NF).
+
+2. **Fertilization Regime**: The fertilization treatment included a pre-plant application of starter fertilizer and a side-dress application at the 6-leaf stage of maize growth. The no-fertilizer treatment did not receive any chemical or organic fertilizer throughout the experiment.
+
+3. **Cropping System**: The cropping systems tested were continuous maize and a maize-oats-alfalfa-alfalfa rotation.
+
+4. **Plot Size and Tillage**: Each experimental plot was 76.2 m long by 12.2 m wide. The land was tilled using fall mouldboard plowing followed by spring discing and harrowing.
+
+5. **Data Collection**: The experiment collected data on maize yield, soil nitrogen, and water dynamics. Soil mineral content and nitrate loss were measured, and annual maize grain yields were recorded.
+
+6. **Model Evaluation**: The DSSAT-CERES-Maize model simulations were compared with measured data to evaluate model performance. Parameters like root mean square error (RMSE) and normalized RMSE (n-RMSE) were used to quantify the model's performance.
+
+This long-term study helped improve the understanding of the effects of fertilizer management on maize yield and soil health【4:0†source】.

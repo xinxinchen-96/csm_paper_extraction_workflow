@@ -1,0 +1,5 @@
+The experiment was conducted under the Australian Grains Free-Air CO2 Enrichment (AGFACE) facility in Horsham, Australia. This study involved a controlled investigation into the impacts of elevated CO2 (eCO2) on wheat growth, yield, and water use over a period of three years. 
+
+The experimental design utilized a complete randomized block setup with several treatment factors: CO2 levels (ambient and elevated at 365 and 550 μmol mol−1, respectively), two watering regimes (rain-fed and supplemental irrigation), two nitrogen fertilization levels (0 and 53–138 kg N ha−1), and two different sowing dates. This design integrated a variety of variables, such as water availability and time of sowing, to assess their combined effects on the wheat crop's response to elevated CO2 levels【4:3†source】. 
+
+The spatial arrangement included 12-m to 16-m diameter octagonal FACE rings, where CO2 was injected above the crop canopy. Measurements included growth stages from sowing to harvest, with analyses on biomass, yield, and water use efficiency【4:5†source】【4:6†source】.

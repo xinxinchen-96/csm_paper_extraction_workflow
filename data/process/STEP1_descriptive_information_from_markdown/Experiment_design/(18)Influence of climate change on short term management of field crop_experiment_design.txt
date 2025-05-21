@@ -1,0 +1,13 @@
+The experiment in this study involved using a combination of two models to investigate the impact of climate change on short-term management of field crops, specifically winter wheat and silage maize, in the Swabian Alb region of southwestern Germany. The experiment design included a farm management model, FARMACTOR, and a crop growth model system, EXPERT-N. These models were coupled to simulate the effects of weather and projected climate scenarios on cropping actions and yields at a daily time scale【4:3†source】.
+
+Key aspects of the experiment included:
+
+1. Daily Weather Data: Both models were driven by daily weather data to capture the interactions between weather, crop growth, and agricultural management【4:4†source】.
+
+2. Dynamic Management: The farm management model made daily management decisions, dynamically determining action dates for activities such as planting, fertilizing, and harvesting. Decisions were based on weather conditions, soil quality, and crop development【4:4†source】.
+
+3. Adaptation Algorithms: An adaptive learning algorithm was implemented, allowing for the adaptation of yield expectations and shifting of seeding time windows based on observed weather and yield data from previous years【4:1†source】【4:9†source】【4:9†source】.
+
+4. Calibration: The models were calibrated using historical weather and phenological data to improve the prediction of planting and harvest dates【4:19†source】.
+
+Through this complex modeling approach, the study aimed to analyze the potential effects of climate change on crop management practices and yield outcomes under different climate scenarios【4:6†source】.

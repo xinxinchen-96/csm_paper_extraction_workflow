@@ -1,0 +1,11 @@
+The experiment design in the study detailed in the document involves several key experiments focused on crop growth and nitrogen fertilization:
+
+1. **Experiment on Nitrogen Fertilization and Winter Wheat Growth**: The first experiment aimed to assess the effects of nitrogen fertilization on the growth of winter wheat using the cultivar Gemini. This involved monitoring growth in a controlled setting where nitrogen levels could be adjusted and measured.
+
+2. **Comparative Dynamics of Biomass Accumulation**: The second experiment focused on the spring dynamics of biomass accumulation and forage quality among various species including winter wheat, Italian ryegrass, barley, rye, and triticale. For this, two cultivars for each species were used, and aboveground biomass (AGB) samples were collected at different growth stages.
+
+3. **Spring Dynamics for Selected Crops**: The third experiment studied the spring dynamics of forage quality and biomass accumulation in winter wheat, barley, and Italian ryegrass. The setup involved comparisons using cultivars Eridano and Soissons for wheat.
+
+4. **Effects of Nitrogen on Wheat Cultivars Growth**: In the fourth experiment, the effects of nitrogen fertilization were studied on the growth of three wheat cultivars. Biomass accumulation was measured only for the optimal nitrogen treatment.
+
+The study used standardized sampling methods, collecting weather data, and maintaining consistent soil conditions across experiments. The methodology was designed to validate parameterization of crop growth models and improve simulation accuracy for different crop species in varying nitrogen and environmental conditions【4:0†source】.

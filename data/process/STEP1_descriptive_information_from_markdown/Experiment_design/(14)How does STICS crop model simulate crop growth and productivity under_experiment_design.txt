@@ -1,0 +1,19 @@
+The experiment in the study was designed to evaluate the ability of the STICS crop model to predict winter wheat growth and yield under different light conditions. Specifically, the experiment involved a two-year artificial shade setup with three treatment conditions: continuous shade (CS), periodic shade (PS), and no shade (NS). 
+
+1. **Treatments**:
+   - **CS Treatment**: Involved a reduction of light proportion throughout the entire day.
+   - **PS Treatment**: Featured intermittent shade, varying throughout the day.
+   - **NS Treatment**: Received 100% of the available light.
+
+2. **Field Experiment Setup**:
+   - Conducted over two growing seasons (2014–2015 and 2015–2016) at the Gembloux Agro-Bio Tech experimental farm in Belgium.
+   - Winter wheat (cultivar Edgard) was planted and exposed to the artificial shade via a greenhouse tunnel arranged east-west.
+   - Different shade levels were simulated using a camouflage net to produce dynamic sun/shade patterns.
+
+3. **Data Collection**:
+   - Monitored parameters included daily incident global radiation, abovementioned biomass, grain yield components (grain number per m² and grain weight), and various weather conditions.
+   - Phenological stages and yield components were tracked, with shade layers applied to coincide with tree phenology to simulate agroforestry conditions.
+
+4. **Model Calibration and Evaluation**:
+   - Calibration of the STICS model was performed using data from the NS treatment to adjust parameters related to grain number and phenology.
+   - The model’s predictive capability was assessed by comparing simulated results against field observations for all shade conditions【4:2†source】【4:18†source】.

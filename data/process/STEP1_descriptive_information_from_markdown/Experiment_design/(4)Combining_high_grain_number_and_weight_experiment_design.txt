@@ -1,0 +1,11 @@
+The study involved designing a series of experiments to evaluate grain yield in doubled haploid (DH) lines derived from crossing two parent wheat lines with contrasting traits: Bacanora (high grain number) and Weebil (high grain weight). Two main experiments were conducted under field conditions in southern Chile. 
+
+**Experiment 1**: 
+- Conducted over two growing seasons (2008-2009 and 2009-2010).
+- Assessed the performance of 105 spring wheat DH lines, their parents, and a Chilean cultivar (Pandora-INIA).
+- Implemented a randomized complete block design with three replications.
+
+**Experiment 2**:
+- Carried out in 2010-2011.
+- Evaluated the two highest yielding DH lines from Experiment 1 (DH1 and DH2) against two high-yielding Chilean cultivars (Pandora-INIA and Invento-BAER) under two different plant densities.
+- Used split-plot design with three replications, where plant density was assigned to main plots and genotypes to sub-plots【4:0†Combining_high_grain_number_and_weight.pdf】.

@@ -1,0 +1,5 @@
+The study utilized the Askov Long-term Experiment (LTE) in Denmark, established in 1894, to analyze the yield variability trends for winter wheat and spring barley from 1932 to 2019. The experimental design involved treatments with different nutrient sources: mineral fertilizers (NPK - nitrogen, phosphorus, potassium) and animal manure (AM). Each nutrient source was applied at three different rates: ½, 1, and 1½ times the standard rate for both fertilizers.
+
+The experimental plots were arranged in four blocks with embedded treatment plots in a row-column layout. Over time, the experiment incorporated several modifications, such as changes in crop species, nutrient amounts, and treatment adjustments within the blocks. These adjustments aimed to evaluate the effects of different nutrient treatments on the yield variability across various periods and provided a basis to assess the impact of fertilization on yield stability.
+
+The study analyzed yield data using a mixed model approach with restricted maximum likelihood estimates, focusing on understanding how different treatments affected yield stability over nearly nine decades【4:3†source】.

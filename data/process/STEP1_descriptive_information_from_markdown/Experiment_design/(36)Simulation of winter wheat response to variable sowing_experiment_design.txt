@@ -1,0 +1,15 @@
+The experiment design in this study involved field trials conducted at two farms in New Zealand, located at Leeston and Wakanui. These trials aimed to assess the effect of variable sowing dates and sowing densities on winter wheat growth and yield. The experiment followed a split-plot design:
+
+1. **Locations and Setup**:
+   - **Leeston Trials**: Four sowing dates (February, early March, late March, and April) were tested alongside four sowing densities (50, 100, 150, and 200 seeds per square meter). The trials aimed to maximize wheat production under optimal growth conditions without water and nitrogen stress.
+   - **Wakanui Trials**: Only the locally recommended sowing density (150 seeds per square meter) was used. Different cultivars, sowing dates, and use of plant growth regulators or defoliation were studied.
+
+2. **Design and Replication**:
+   - The Leeston experiments featured a split-plot design with sowing dates as main plots and sowing rates as subplots, replicated four times.
+   - The Wakanui experiments used a randomized block design.
+
+3. **Management and Data Collection**:
+   - Each year, crop management was adapted for optimal growth. Fertilization varied between 122 and 284 kg N ha−1, and irrigation reached up to 210 mm of water.
+   - The trials were monitored for several parameters including grain, stem, chaff, and leaf dry weight at maturity; ear number and grain number; grain unit dry weight; and harvest index【4:0†source】. 
+
+The study also utilized crop multi-model ensembles (MMEs) consisting of 29 process-based wheat crop models to simulate and evaluate the effects of varying these factors on wheat growth and yield in a high-yielding environment【4:12†source】.

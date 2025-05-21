@@ -1,0 +1,9 @@
+The study conducted several experiments at the University of Arizona’s Maricopa Agricultural Center to evaluate the cotton response to various environmental conditions. The key experiments included:
+
+1. **FACE (Free-Air CO2 Enrichment):** This technique involved increasing CO2 levels in 22-meter diameter circular plots to 550 ppm using a system of blowers and pipes. The study used four replicate plots for FACE and corresponding control plots to assess the impact of elevated CO2 concentrations. The experiments included treatments with varying water supply as well【4:2†source】.
+
+2. **AgIIS (Agricultural Irrigation Imaging System):** A Latin square experimental design was employed to compare four treatments consisting of combinations of limited and optimal nitrogen and water levels. The field was treated with pre-plant nitrogen and split into plots receiving different levels of fertigation during the growing season. Observations included soil moisture and irrigation scheduling based on depletion rates【4:3†source】.
+
+3. **FISE (FAO-56 Irrigation Scheduling Experiments):** Conducted in 2002 and 2003, this experiment included 32 plots with two distinct irrigation modes: FAO-56 scheduling and coefficients based on leaf area computed via NDVI. Variables included plant density and nitrogen levels, creating numerous treatment combinations with replicates to validate the impact on growth and yield【4:7†source】. 
+
+These experiments collectively provided comprehensive datasets to validate plant growth models and test remote sensing techniques【4:0†source】【4:4†source】.
