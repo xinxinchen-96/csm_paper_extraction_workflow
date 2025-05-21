@@ -1,0 +1,3 @@
+The soil data used in the study is part of the various experiments conducted at the University of Arizona's Maricopa Agricultural Center. These experiments include data on soil properties, moisture, and other related measurement parameters, which are utilized in the evaluation of cotton growth models【4:0†source】.
+
+The latitude and longitude for the location of these experiments are approximately 33.07°N and 111.98°W, respectively【4:1†source】.

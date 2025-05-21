@@ -1,0 +1,8 @@
+The soil data used in the study includes the characteristics from experiments conducted in various soil layers, with data on sand, clay, silt, pH (water), cation exchange capacity (C.E.C.), and soil organic matter (SOM) recorded for different locations and years. 
+
+The study was conducted in two locations in northern Italy. 
+
+1. **S. Angelo**: Latitude 45° 15' N, Longitude 9° 22' E.
+2. **Lodi**: Latitude 45° 19' N, Longitude 9° 28' E【4:3†source】. 
+
+These geographic coordinates provide the longitude and latitude of the soil data used in the study【4:1†source】【4:0†source】.

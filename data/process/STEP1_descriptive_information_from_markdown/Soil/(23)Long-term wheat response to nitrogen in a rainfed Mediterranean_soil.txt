@@ -1,0 +1,3 @@
+The soil data used in the study includes soil physical and chemical properties for the experimental site in Foggia, Italy, with measurements taken at various depths: 0–10 cm, 10–30 cm, 30–50 cm, 50–80 cm, and 80–120 cm. The properties measured include sand, clay, bulk density, organic carbon, and soil nitrogen content. Specific values for sand, clay, bulk density, and organic carbon across the depths were recorded, and soil hydraulic conductivity was estimated【4:2†source】.
+
+The study was conducted at the Cereal Research Centre in Foggia, Italy, located at the coordinates 41°28′N (latitude) and 15°32′E (longitude), at an elevation of 75 meters【4:0†source】.

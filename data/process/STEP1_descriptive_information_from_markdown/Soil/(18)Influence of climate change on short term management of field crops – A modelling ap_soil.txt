@@ -1,0 +1,3 @@
+The study uses soil data calculated from pedo-transfer functions, which included soil physical properties such as carbon pools, wilting point, field capacity, total pore volume, and saturated hydraulic conductivity. The soil hydraulic curve parameters were determined for the Van Genuchten equation. The C/N ratio measured by project partners was used to calculate nitrogen pools from the carbon content for every soil horizon【4:14†source】.
+
+The geographic coordinates provided for this study are for the weather station "Stötten," which is located at 48.67°N latitude and 9.87°E longitude. This weather station is within the study area【4:1†source】.

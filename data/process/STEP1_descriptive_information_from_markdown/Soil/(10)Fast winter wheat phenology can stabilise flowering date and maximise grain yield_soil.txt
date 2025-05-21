@@ -1,0 +1,5 @@
+The study uses soil data from various experiments conducted at multiple locations in southern and western Australia, including Temora in New South Wales, Berriwillock in Victoria, Minnipa in South Australia, and Cunderdin in Western Australia【4:8†source】.
+
+For soil-related measurements, the study involves an analysis of sowing dates for wheat, utilizing the Yield Prophet® database, which helps farmers make assessments of crop water and fertilizer requirements and seasonal yield potential【4:8†source】.
+
+Regarding the geographic coordinates, the range in latitude of sites used in this study is between 31°S and 36°S【4:1†source】. Additionally, specific weather station locations near the experiment sites, such as the Temora station number 073151 and the Minnipa station number 18195, are mentioned for data collection on temperature and other variables【4:0†source】【4:19†source】.

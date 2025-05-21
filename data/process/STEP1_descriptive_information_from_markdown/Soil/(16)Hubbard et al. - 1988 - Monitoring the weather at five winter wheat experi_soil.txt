@@ -1,0 +1,8 @@
+The study uses various weather data that include soil temperature among other variables to monitor winter wheat experimental field sites located from Lethbridge, Alberta, Canada to Lubbock, Texas, USA. However, specific details about soil data types used beyond soil temperature, such as soil moisture or composition, are not explicitly mentioned in the search results.
+
+Here are the experimental sites for the study with their approximate latitudes and longitudes:
+1. **Lethbridge, Alberta, Canada**: Latitude ~49.7° N, Longitude ~112.8° W
+2. **Mandan, North Dakota, USA**: Latitude ~46.8° N, Longitude ~100.9° W
+3. **Sandhills Agricultural Laboratory, Nebraska, USA**: Located near Tryon, Nebraska - approximate coordinates Latitude ~41.5° N, Longitude ~100.9° W
+4. **Manhattan, Kansas, USA**: Latitude ~39.2° N, Longitude ~96.6° W
+5. **Lubbock, Texas, USA**: Latitude ~33.6° N, Longitude ~101.8° W【4:0†source】.

@@ -1,0 +1,3 @@
+The soil data used in the study is detailed in the supporting information, specifically in Table S1, which describes the soil profile data including the mean air dry, crop lower limit (LL), drained upper limit (DUL), saturation (SAT), bulk density (BD), pH, organic carbon (OC), and organic nitrogen (ON) content of the experimental site【4:5†source】.
+
+The longitude and latitude for the AGFACE experiment site mentioned in the study are 36°45'S (latitude) and 142°07'E (longitude) at an elevation of 128 meters【4:1†source】.

@@ -1,0 +1,3 @@
+The soil data used in this study is from a pseudogleyic sandy loam (Luvisol) located at the Hohenschulen Experimental Farm, which is part of the Kiel University in Northern Germany. The soil characteristics include 100 g kg− 1 clay, pH 6.7, 82 mg kg− 1 phosphorus (P), 200 mg kg− 1 potassium (K), 215 mg kg− 1 magnesium (Mg), 13.8 g kg–1 organic carbon (C), and 1.1 g kg− 1 total nitrogen (N)【4:0†source】.
+
+The latitude and longitude of the experimental site are 54°18'N and 9°59'E【4:0†source】.

@@ -1,0 +1,3 @@
+The study uses soil data that is part of a multi-cultivar, multi-location, and multi-sowing date trial for wheat in Australia. The data were collected from 10 sites located throughout the grain-growing region of Australia, with specific sites not mentioned in the extracted data. However, they reflect the diversity in wheat-growing regions across Australia【4:6†source】. 
+
+Latitude and longitude details are not explicitly mentioned in the provided data excerpts. For specific geographic coordinates, additional detailed site-specific data from the original study or supplementary material would be necessary【4:6†source】.

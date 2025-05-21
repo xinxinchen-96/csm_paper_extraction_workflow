@@ -1,0 +1,3 @@
+The soil data used in the study was collected from the Zambia Agriculture Research Institute laboratory and categorized using USDA Soil Taxonomy as Clayey, Mixed, Hyperthermic, Typic Paleustalfs. This soil is well-drained, yellowish-red to red, deep to very deep, with high activity clay and medium base saturation【4:1†source】.
+
+The study area is located at the Zambia Agricultural Research Institute (ZARI) Central Research Station at Mount Makulu, which has geographical coordinates of latitude 15.550° S and longitude 28.250° E【4:5†source】.

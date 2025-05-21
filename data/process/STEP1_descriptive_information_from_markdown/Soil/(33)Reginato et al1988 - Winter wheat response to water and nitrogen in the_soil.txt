@@ -1,0 +1,7 @@
+The study uses soil data characterized by site name, state or province, elevation, latitude, longitude, soil water holding capacity, and bulk density【4:0†source】. The specific locations and their corresponding latitude and longitude are as follows【4:9†source】:
+
+1. Lethbridge, AB: 49°42'N, 112°50'W
+2. Mandan, ND: 46°46'N, 100°55'W
+3. Tryon, NE: 41°37'N, 100°50'W
+4. Manhattan, KS: 39°09'N, 96°37'W
+5. Lubbock, TX: 36°31'N, 109°03'W

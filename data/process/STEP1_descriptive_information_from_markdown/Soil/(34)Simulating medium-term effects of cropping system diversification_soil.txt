@@ -1,0 +1,5 @@
+The study used soil data from two sites, Zeekoegat and Buffelsvlei. For Zeekoegat, soil organic carbon and pH (H2O) were measured to a depth of 60 cm, while for Buffelsvlei, measurements were taken to a depth of 30 cm. The study assumed that in the layers below the sample depth, soil organic carbon (SOC) halves every thirty centimeters, and pH remains constant【4:0†source】.
+
+The longitude and latitude for the two sites are as follows:
+- Buffelsvlei: 26.49487°S, 26.60200°E
+- Zeekoegat: 25.60398°S, 28.35429°E【4:0†source】.

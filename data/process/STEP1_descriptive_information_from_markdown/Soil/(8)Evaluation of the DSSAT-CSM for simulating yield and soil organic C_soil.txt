@@ -1,0 +1,3 @@
+The study uses soil data obtained from published measurements in the Changwu Loess Plateau. The soil profile data included information such as soil water lower limit, drained upper limit, saturation, saturated hydraulic conductivity, bulk density, soil organic carbon, total nitrogen, soil clay, and silt contents【4:1†Evaluation of the DSSAT-CSM for simulating yield and soil organic C.pdf】.
+
+The geographic coordinates of the study's experimental field are 35°16′ N latitude and 107°30′ E longitude, located in the central part of the Shizi highland plateau, which is part of the Loess Plateau in Northwestern China. The elevation at this site is 1254 meters【4:5†Evaluation of the DSSAT-CSM for simulating yield and soil organic C.pdf】.

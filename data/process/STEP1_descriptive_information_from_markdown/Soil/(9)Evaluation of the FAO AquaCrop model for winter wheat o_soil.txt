@@ -1,0 +1,13 @@
+The study uses soil data from experiments conducted at the Luancheng Agro-ecosystem Station on the North China Plain. The soil properties at this site are characterized by a range of textures from sandy loam to light clay, depending on the depth. The specific soil depths and their characteristics are detailed as follows: 
+
+- 0–20 cm: Sandy loam
+- 20–40 cm: Sandy loam
+- 40–60 cm: Light loam
+- 60–80 cm: Medium loam
+- 80–100 cm: Light clay
+- 100–120 cm: Light clay
+- 120–160 cm: Light clay
+
+The bulk density varies from 1.41 g/cm³ to 1.64 g/cm³ across these layers【4:5†source】.
+
+The longitude and latitude for the Luancheng Agro-ecosystem Station where the study was conducted are 37°53′N and 114°41′E, respectively【4:1†source】.

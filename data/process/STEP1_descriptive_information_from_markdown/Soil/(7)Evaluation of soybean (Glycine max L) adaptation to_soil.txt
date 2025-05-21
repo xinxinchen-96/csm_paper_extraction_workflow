@@ -1,0 +1,4 @@
+The study uses soil data from two locations in France, namely Beauvais and Catillon-Fumechon. The soil was characterized at each experimental site by analyzing 15 cm layer samples along the soil profile from 0 to 90 cm, with three replicates. The study specified the coordinates and soil depth for these locations:
+
+- Beauvais, France: Latitude 49.465, Longitude 2.072
+- Catillon-Fumechon, France: Latitude 49.544, Longitude 2.388【4:0†Evaluation of soybean (Glycine max L) adaptation to.pdf】.

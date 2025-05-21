@@ -1,0 +1,7 @@
+The study used soil data at five locations across the North American Great Plains. The specific latitudes for these locations were:
+
+- Lubbock: 36°31'
+- Manhattan: 39°09'
+- Tryon: 41°37'
+- Mandan: 46°46'
+- Lethbridge: 49°42'【4:2†Major et al1988 - Winter wheat grain yield response to water and nit.pdf】.

@@ -1,0 +1,5 @@
+The study does not explicitly mention the specific soil data it uses. However, it discusses various soil-related factors such as depletion of soil nutrients and changes in soil properties which are central to assessing yield declines in rice-wheat systems【4:0†source】.
+
+For the longitude and latitude provided in the study, precise geographical coordinates are not explicitly mentioned. Instead, the study records coordinates for various experimental sites as text within encrypted PDF data, which requires decoding beyond the current extraction capabilities【4:18†source】【4:19†source】. 
+
+For more specific details, you might consider manually checking the sections related to "Experimental sites and treatments" where such data might typically be outlined.
