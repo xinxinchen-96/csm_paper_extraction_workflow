@@ -1,0 +1,3 @@
+The study uses weather data from a meteorological station located at the Universidad Austral de Chile, which is approximately 200 meters from the experimental plots. They use this data to calculate photosynthetically active radiation (PAR) intercepted by the canopy, which is crucial for their study on grain yield potential of wheat【4:0†Combining_high_grain_number_and_weight.pdf】.
+
+As for the location of the study, it is carried out in Valdivia, Chile, with the site coordinates provided as 39°47'S, 73°14'W【4:7†Combining_high_grain_number_and_weight.pdf】.

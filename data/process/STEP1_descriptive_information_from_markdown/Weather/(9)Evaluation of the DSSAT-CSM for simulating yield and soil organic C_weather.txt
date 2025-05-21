@@ -1,0 +1,1 @@
+The weather data used in this study were obtained from the Changwu weather station, located at 35°12′ N latitude and 107°48′ E longitude, with an elevation of 1207 meters【4:1†source】.

@@ -1,0 +1,3 @@
+The study uses weather data from five winter wheat experimental field sites ranging from Lethbridge, Alberta, Canada, to Lubbock, Texas, U.S.A. The weather variables monitored include wind speed and direction, solar radiation, air temperature and relative humidity, soil temperature, and precipitation【4:0†source】.
+
+Regarding the latitude and longitude, the specific coordinates are not provided in the extracted snippets. However, the study covers locations that differ significantly in terms of latitude, from northern sites like Lethbridge, Alberta, to southerly sites like Lubbock, Texas【4:6†source】.

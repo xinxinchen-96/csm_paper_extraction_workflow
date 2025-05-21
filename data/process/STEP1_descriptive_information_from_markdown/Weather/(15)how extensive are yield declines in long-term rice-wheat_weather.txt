@@ -1,0 +1,6 @@
+The study uses weather data that includes longitude and latitude information. The specific longitude and latitude values related to the study were given as follows:
+
+- For longitude, values ranged from 1.849 to 8.819.
+- For latitude, values such as 37 were mentioned alongside some longitude points. 
+
+These coordinates seem to be part of a larger dataset used for analyzing yield declines in long-term rice-wheat experiments【4:9†source】.

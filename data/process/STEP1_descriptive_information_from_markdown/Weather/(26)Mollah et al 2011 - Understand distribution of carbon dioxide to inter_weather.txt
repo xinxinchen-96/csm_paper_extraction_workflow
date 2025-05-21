@@ -1,0 +1,4 @@
+The study utilizes weather data from the Australian Bureau of Meteorology 2010 to address changes in climate, such as temperature rise and altered rainfall patterns, impacting grain production in Australia【4:1†source】. The study is conducted at specific locations in Victoria, Australia, with detailed coordinates provided:
+
+- **Horsham**: Latitude 36°45'7"S, Longitude 142°8'52"E, Elevation 127m
+- **Walpeup**: Latitude 35°8'20"S, Longitude 142°0'18"E, Elevation 103m【4:0†source】.

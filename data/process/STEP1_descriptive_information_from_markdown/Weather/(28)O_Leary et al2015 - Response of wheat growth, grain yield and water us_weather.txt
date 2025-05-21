@@ -1,0 +1,3 @@
+The study used daily weather conditions measured mostly on-site. When on-site measurements were unavailable, locally calibrated calculated values for temperature were sourced from two nearby meteorological stations approximately 10 km away【4:0†source】. 
+
+The AGFACE experiment at Horsham, Australia, where the study was conducted, is located at the latitude and longitude coordinates of 36°45′S and 142°07′E, respectively【4:9†source】.

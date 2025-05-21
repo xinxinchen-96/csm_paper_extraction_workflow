@@ -1,0 +1,10 @@
+The study utilized weather data from various stations to calculate temperature-related metrics such as degree days. The stations used were:
+
+- Temora, NSW (station number 073151, located 6 km from the site)
+- Minnipa (station number 18195, located on site)
+- Cunderdin (station number 19900414, located 11 km from the site)
+- Berriwillock (from the Swan Hill aerodrome, located 70 km from the site)
+
+For the calculation of the degree day accumulation, they used a base temperature of 0 °C starting from the first sowing date of the season【4:1†source】.
+
+The latitude range for the sites used in this study was between 31°S and 36°S【4:7†source】.

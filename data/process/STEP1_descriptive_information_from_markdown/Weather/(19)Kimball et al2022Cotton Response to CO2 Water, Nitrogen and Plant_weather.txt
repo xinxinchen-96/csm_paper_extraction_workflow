@@ -1,0 +1,1 @@
+The study utilizes weather data from the Arizona Meteorological Network (AZMET) for the Maricopa Agricultural Center, covering the period from 1988 to 2003. The geographical coordinates used in the study for the Maricopa Agricultural Center are 33.07°N latitude and 111.98°W longitude【4:0†source】.

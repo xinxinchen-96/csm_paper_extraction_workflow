@@ -1,0 +1,3 @@
+The study uses weather data from the Woodslee weather station and the Harrow weather station. The minimum required weather inputs for the DSSAT model include daily solar radiation, daily maximum and minimum temperature, and daily precipitation. The Harrow weather data was used for the period from 1959 to 1977, while the Woodslee station data was used from 1978 to 2008【4:0†source】.
+
+The geographical coordinates used in the study are from two locations: Woodslee (42°13'N, 82°44'W) and Harrow (42°02'N, 82°54'W)【4:0†source】【4:4†source】.

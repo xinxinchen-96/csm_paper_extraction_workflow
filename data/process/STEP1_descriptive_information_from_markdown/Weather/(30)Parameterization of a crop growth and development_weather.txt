@@ -1,0 +1,3 @@
+In the study, the weather data used includes daily meteorological data such as rainfall, maximum and minimum air temperatures, and global solar radiation. These data were collected with automatic weather stations near the experimental fields【4:1†source】.
+
+The experiments were conducted in two locations in northern Italy. The locations are characterized by a moderate continental climate, with specific geographical coordinates not provided in the document【4:1†source】.

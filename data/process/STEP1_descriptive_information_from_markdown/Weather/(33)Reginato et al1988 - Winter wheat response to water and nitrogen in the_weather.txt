@@ -1,0 +1,8 @@
+The study uses daily weather data which includes measurements of maximum and minimum temperature, total precipitation, average relative humidity, solar radiation, soil temperature at 10 cm depth, and wind run【4:1†Reginato et al1988 - Winter wheat response to water and nitrogen in the.pdf】.
+
+The longitude and latitude of the study locations are as follows:
+1. Lethbridge, AB: 49°42'N, 112°50'W
+2. Mandan, ND: 46°46'N, 100°55'W
+3. Tryon, NE: 41°37'N, 100°50'W
+4. Manhattan, KS: 39°09'N, 96°37'W
+5. Lubbock, TX: 36°31'N, 109°03'W【4:11†Reginato et al1988 - Winter wheat response to water and nitrogen in the.pdf】.

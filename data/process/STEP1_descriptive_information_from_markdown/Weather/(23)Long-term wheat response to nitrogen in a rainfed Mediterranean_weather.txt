@@ -1,0 +1,1 @@
+The study uses weather data which includes daily values of incoming solar radiation (MJ m−2 day−1), maximum and minimum temperature (°C), and rainfall (mm) obtained from a meteorological station near the experimental field【4:1†source】. The study was conducted at the Cereal Research Centre in Foggia, Italy, with coordinates 41°28′′N latitude and 15°32′′E longitude【4:7†source】.

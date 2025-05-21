@@ -1,0 +1,1 @@
+The weather data used in this study is sourced from the weather station "Stötten," which is part of the German Weather Service (Deutscher Wetterdienst, DWD). This station is located at the coordinates 48.67° N latitude and 9.87° E longitude. Historical weather data from this station includes daily time series starting from 1947【4:0†source】.

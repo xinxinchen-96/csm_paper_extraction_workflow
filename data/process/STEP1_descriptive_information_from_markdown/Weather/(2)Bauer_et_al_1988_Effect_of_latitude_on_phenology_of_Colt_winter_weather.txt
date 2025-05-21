@@ -1,0 +1,6 @@
+The study uses weather data specifically in the form of growing degree-days (GDD) and photothermal units (PTU) for analyzing plant development rates. These data were derived from daily maximum and minimum air temperatures measured at 2-meter height for each 24-hour period between midnight to midnight【4:1†Bauer_et_al_1988_Effect_of_latitude_on_phenology_of_Colt_winter.pdf】.
+
+Regarding the longitude and latitude, the study was conducted at multiple locations, including:
+
+1. Manhattan, Kansas (Latitude: 39°09'N, Longitude: 96°37'W)
+2. Mandan, North Dakota (Latitude: 46°46'N, Longitude: 100°55'W)【4:5†Bauer_et_al_1988_Effect_of_latitude_on_phenology_of_Colt_winter.pdf】.

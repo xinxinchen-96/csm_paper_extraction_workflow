@@ -1,0 +1,3 @@
+The study used weather data collected from a weather station located within 2 km of the experimental field. This data provided daily measurements of minimum and maximum temperature, rainfall, solar radiation, wind speed, and relative humidity at 2 meters【4:0†source】.
+
+The field trials were conducted at two farms located at Leeston (43° 45' S, 172° 15' E) and Wakanui (43° 58' S, 171° 48' E) in the Canterbury Region of the South Island of New Zealand【4:3†source】.

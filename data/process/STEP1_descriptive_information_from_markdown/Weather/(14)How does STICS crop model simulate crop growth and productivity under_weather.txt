@@ -1,0 +1,1 @@
+The study uses weather data obtained from a weather station of the Royal Meteorological Institute, which is located 3 km from the experimental site in Ernage, Gembloux, with the coordinates 50°59′N, 4°67′E. The input weather data include daily minimum and maximum air temperature, relative humidity, rainfall, wind speed, wind direction, and global radiation【4:0†source】.

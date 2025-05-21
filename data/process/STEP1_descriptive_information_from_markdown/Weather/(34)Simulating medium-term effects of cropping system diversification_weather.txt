@@ -1,0 +1,6 @@
+The study uses weather data from nearby weather stations at Buffelsvallei and Roodeplaat, which are linked to the Buffelsvlei and Zeekoegat sites, respectively. The coordinates for these weather stations are as follows:
+
+- Buffelsvallei: Latitude 26.49487° S, Longitude 26.60200° E
+- Roodeplaat: Latitude 25.60398° S, Longitude 28.35429° E
+
+The weather data used includes daily maximum and minimum temperatures, solar radiation, and precipitation for the trial period【4:0†source】.

@@ -1,0 +1,7 @@
+The study uses various weather conditions across five locations on the North American Great Plains, but specific weather data or sources are not detailed in the provided snippets. The study locations and their coordinates as per latitude are:
+
+- Lubbock: 36°31' N
+- Manhattan: 39°09' N
+- Tryon: 41°37' N
+- Mandan: 46°46' N
+- Lethbridge: 49°42' N【4:2†source】.
