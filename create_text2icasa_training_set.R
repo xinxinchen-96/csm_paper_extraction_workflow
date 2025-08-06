@@ -233,7 +233,6 @@ lapply(names(str_data_json), function(name) {
 # Helper function to generate training file
 generate_training_file <- function(md_folder, str_folder, output_file, method = "one_to_many") {
   
-  # Get lists of all files
   md_files <- list.files(md_folder, pattern = "\\.md$", full.names = TRUE)
   str_files <- list.files(str_folder, pattern = "\\.json$", full.names = TRUE)
   
@@ -242,16 +241,12 @@ generate_training_file <- function(md_folder, str_folder, output_file, method = 
     file.remove(output_file)
   }
   
-  # --- Main loop through each paper ---
   for (md_path in md_files) {
-    
-    #md_path <- md_files[1]  #tmp
     
     # Derive base name (e.g., "AuthorYYYY" from ".../AuthorYYYY.md")
     base_name <- tools::file_path_sans_ext(basename(md_path))
     
     # Find all corresponding JSON files for this paper
-    # This pattern matches files starting with the base name followed by an underscore
     matching_json_basenames <- grep(paste0("^", base_name, "_"), basename(str_files), value = TRUE)
     
     if (length(matching_json_basenames) == 0) {
@@ -265,27 +260,24 @@ generate_training_file <- function(md_folder, str_folder, output_file, method = 
     # Read the unstructured text content once per paper
     unstructured_text <- paste(readLines(md_path, warn = FALSE), collapse = "\n")
     
-    # --- Method 2: One-to-Many (One pair per year) ---
+    # Method One-to-Many (One pair per year)
     if (method == "one_to_many") {
       for (json_path in json_paths) {
-        # Read the year-specific JSON content as a single string
+
         structured_data_string <- paste(readLines(json_path, warn = FALSE), collapse = "\n")
-        
         # Create the prompt-completion pair
         final_pair <- list(prompt = unstructured_text, completion = structured_data_string)
-        
         # Convert to a single JSON line and write to the output file
         json_line <- toJSON(final_pair, auto_unbox = TRUE)
         write(json_line, file = output_file, append = TRUE)
       }
     } 
-    # --- Method 1: One-to-One (One pair per paper) ---
+    # Method One-to-One (One pair per paper)
     else if (method == "one_to_one") {
       # This list will hold the parsed R objects for each year's JSON
       combined_r_objects <- list()
       
       for (json_path in json_paths) {
-        # Extract year from filename (e.g., "2023" from "Author2022_2023.json")
         year_match <- str_match(basename(json_path), "_(\\d{4})\\.json$")
         if (is.na(year_match[1, 2])) {
           warning(paste("Could not extract year from filename:", basename(json_path)))
@@ -293,21 +285,15 @@ generate_training_file <- function(md_folder, str_folder, output_file, method = 
         }
         year_key <- paste0("year_", year_match[1, 2])
         
-        # Read the JSON content and parse it into an R object
         structured_data_string <- paste(readLines(json_path, warn = FALSE), collapse = "\n")
         structured_object <- fromJSON(structured_data_string, simplifyVector = FALSE)
-        
-        # Add the R object to the list, named by its year
         combined_r_objects[[year_key]] <- structured_object
       }
       
       if (length(combined_r_objects) > 0) {
-        # Convert the combined list of R objects into a single, formatted JSON string
         completion_string <- toJSON(combined_r_objects, auto_unbox = TRUE, pretty = TRUE)
-        
         # Create the final prompt-completion pair
         final_pair <- list(prompt = unstructured_text, completion = completion_string)
-        
         # Convert to a single JSON line and write to the output file
         json_line <- toJSON(final_pair, auto_unbox = TRUE)
         write(json_line, file = output_file, append = TRUE)
