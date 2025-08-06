@@ -12,8 +12,8 @@
 ## - The script can be edited for to extract short instead of long ICASA column names. Short names consume less token
 ## but they likely complicate the task as they are less explicit
 ## - The script can be edited to manually exclude ICASA variables by adding them to the 'todrop' vector
+## - All template columns were included (i.e., ticked in Excel workbook) for comprehensiveness
 ## - The training data generating function offers two options:
-##   - All template columns were included (i.e., ticked in Excel workbook) for comprehensiveness
 ##   - One-to-one (each experimental year is paired with the entire pdf, with the extraction task focused on data
 ##     for the focal year); generally recommended (lower single-pair token count, possibly more accurate)
 ##   - One-to-many: all experimental years are bundled together and paired with the pdf
@@ -52,7 +52,7 @@ dict$name = if (header == "long") dict$var_name else dict$Code_Query
 dict <- select(dict, c(Sheet, name))
 
 
-# ---- Reorder columns
+# ---- Reorder columns following dictionary order
 reorder_columns <- function(ls, name_dict) {
   lapply(names(ls), function(sec) {
     df <- ls[[sec]]
@@ -65,7 +65,9 @@ data_reordered <- lapply(str_datasets, function(ls) reorder_columns(ls, name_dic
 names(data_reordered) <- names(str_datasets)
 
 
-# ---- Merge subsections with headers: using the ICASA 'Group' level for model training
+# ---- Merge subsections with headers
+# NB: the ICASA 'Group' level is used for grouping variables for model training
+
 merge_sections <- function(ls) {
   
   # Remove measured data for now...
