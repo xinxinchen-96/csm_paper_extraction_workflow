@@ -36,11 +36,11 @@ library(jsonlite)
 
 
 # ---- Extract from template
-template_path <- "./data/0_traning_set/0_template/template_icasa_vba_trainingSet_allColumns.xlsm"  # <-- template file path
+template_path <- "./data/0_training_set/0_template/template_icasa_vba_trainingSet_allColumns.xlsm"  # <-- template file path
 header = "long"  # <-- set whether to use long or short ICASA headers
 
 str_datasets <- extract_template(path = template_path,
-                                 headers = "long", 
+                                 headers = header,  # TODO: short does not work, gotta fix it...
                                  keep_empty = TRUE,
                                  keep_null_events = TRUE)
 
@@ -68,23 +68,48 @@ names(data_reordered) <- names(str_datasets)
 # ---- Merge subsections with headers
 # NB: the ICASA 'Group' level is used for grouping variables for model training
 
-merge_sections <- function(ls) {
+included_sections <- unique(unlist(lapply(data_reordered, names)))  # all sections
+#included_sections <- c("EXP_METADATA","FIELDS")  # <-- Fill out this argument to select what to keep from the template
+
+# NB: always keep/drop header sections (e.g., FERTILIZERS) together with their respective
+# subsection, otherwise it won't work further!
+
+merge_sections <- function(ls, headers = "short", sections = NULL) {
   
   # Remove measured data for now...
-  ls <- ls[!grepl("SM_|TS_|OBS", names(ls))]
+  ls <- ls[!grepl("SM_|TS_|OBS", names(ls))]  #tmp hack, to ensure measured data dropped in any case
+  ls <- ls[included_sections]
+
+  if (headers == "long") {
+    merge_map <- list(
+      INITIAL_CONDITIONS = list("INITIAL_CONDITION_LAYER", c("experiment_ID", "initial_conditions_level")),
+      IRRIGATIONS = list("IRRIGATION_APPLICATIONS", c("experiment_ID", "irrigation_level")),
+      FERTILIZERS = list("FERTILIZER_APPLICS", c("experiment_ID", "fertilizer_level")),
+      ORGANIC_MATERIALS = list("ORGANIC_MATERIAL_APPLICS", c("experiment_ID", "org_materials_applic_lev")),
+      TILLAGE = list("TILLAGE_EVENTS", c("experiment_ID", "tillage_level")),
+      SOIL_PROFILES = list("SOIL_PROFILE_LAYERS", "soil_profile_ID"),
+      SOIL_ANALYSES = list("SOIL_ANALYSES_LAYERS", c("experiment_ID", "soil_analysis_level")),
+      CHEMICALS = list("CHEMICAL_APPLICS", c("experiment_ID", "chemical_applic_level")),
+      ENVIRON_MODIFICATIONS = list("ENVIRON_MODIF_LEVELS", c("experiment_ID", "environmental_modif_lev")),
+      HARVESTS = list("HARVEST_EVENTS", c("experiment_ID", "harvest_operations_level"))
+    )
+  } else {
+    merge_map <- list(
+      INITIAL_CONDITIONS = list("INITIAL_CONDITION_LAYER", c("EXPER_ID", "IC")),
+      IRRIGATIONS = list("IRRIGATION_APPLICATIONS", c("EXPER_ID", "IR")),
+      FERTILIZERS = list("FERTILIZER_APPLICS", c("EXPER_ID", "FE")),
+      ORGANIC_MATERIALS = list("ORGANIC_MATERIAL_APPLICS", c("EXPER_ID", "OM")),
+      TILLAGE = list("TILLAGE_EVENTS", c("EXPER_ID", "TI")),
+      SOIL_PROFILES = list("SOIL_PROFILE_LAYERS", "SOIL_ID"),
+      SOIL_ANALYSES = list("SOIL_ANALYSES_LAYERS", c("EXPER_ID", "SA")),
+      CHEMICALS = list("CHEMICAL_APPLICS", c("EXPER_ID", "CH")),
+      ENVIRON_MODIFICATIONS = list("ENVIRON_MODIF_LEVELS", c("EXPER_ID", "EM")),
+      HARVESTS = list("HARVEST_EVENTS", c("EXPER_ID", "HA"))
+    )
+  }
   
-  merge_map <- list(
-    INITIAL_CONDITIONS = list("INITIAL_CONDITION_LAYER", c("experiment_ID", "initial_conditions_level")),
-    IRRIGATIONS = list("IRRIGATION_APPLICATIONS", c("experiment_ID", "irrigation_level")),
-    FERTILIZERS = list("FERTILIZER_APPLICS", c("experiment_ID", "fertilizer_level")),
-    ORGANIC_MATERIALS = list("ORGANIC_MATERIAL_APPLICS", c("experiment_ID", "org_materials_applic_lev")),
-    TILLAGE = list("TILLAGE_EVENTS", c("experiment_ID", "tillage_level")),
-    SOIL_PROFILES = list("SOIL_PROFILE_LAYERS", "soil_profile_ID"),
-    SOIL_ANALYSES = list("SOIL_ANALYSES_LAYERS", c("experiment_ID", "soil_analysis_level")),
-    CHEMICALS = list("CHEMICAL_APPLICS", c("experiment_ID", "chemical_applic_level")),
-    ENVIRON_MODIFICATIONS = list("ENVIRON_MODIF_LEVELS", c("experiment_ID", "environmental_modif_lev")),
-    HARVESTS = list("HARVEST_EVENTS", c("experiment_ID", "harvest_operations_level"))
-  )
+  
+
   
   merged <- list()
   for (main in names(merge_map)) {
@@ -127,7 +152,7 @@ data_merged <- list()
 for (nm in names(data_reordered)) {
   print(nm)  # debug
   ls <- data_reordered[[nm]]
-  data_merged[[nm]] <- merge_sections(ls)
+  data_merged[[nm]] <- merge_sections(ls, headers = header, sections = included_sections)
 }
 
 # ---- Make treatment name matrix ------------------------------------------------------------------------------------
@@ -229,13 +254,10 @@ str_data_json <- lapply(data_merged_names_noid, generate_json)
 
 # Write files
 lapply(names(str_data_json), function(name) {
-  writeLines(str_data_json[[name]], con = file.path("./data/0_traning_set/1_template_json", paste0(name, ".json")))
+  writeLines(str_data_json[[name]], con = file.path("./data/0_training_set/1_template_json", paste0(name, ".json")))
 })
 
 # ---- Create training files -----------------------------------------------------------------------------------------
-
-# Set prompt
-
 
 # Fetch and format ICASA dictionary
 fetch_icasa <- function(url) {
@@ -283,47 +305,50 @@ icasa_dict <- icasa_dict %>%
 # Generate GPT4o standard ICASA schema
 generate_icasa_schema <- function(dict) {
 
-  # Check data requirements
   required_cols <- c("section", "variable_name", "description", "json_type", "unit_or_type")
   if (!all(required_cols %in% names(dict))) {
     stop("CSV must contain columns: 'section', 'variable_name', 'description', 'json_type', and 'unit_or_type'")
   }
   
-  # BUild the schema by looping through each section
-  final_schema <- list(
-    type = "object",
-    properties = list()
-  )
+  properties_for_single_exp <- list()
   sections <- unique(dict$section)
+  
   for (current_section in sections) {
     section_vars_df <- subset(dict, section == current_section)
     item_properties <- list()
-    
-    # Loop through each variable in the section
     for (i in 1:nrow(section_vars_df)) {
       row <- section_vars_df[i, ]
-      
-      prop_list <- list(
-        type = row$json_type,
-        description = row$description
-      )
+      prop_list <- list(type = row$json_type, description = row$description)
       if (!is.na(row$unit_or_type)) {
         prop_list$unit_or_type <- row$unit_or_type
       }
       item_properties[[row$variable_name]] <- prop_list
     }
     
-    # Assemble the final structure for the section
     section_schema <- list(
       type = "array",
       description = paste("Data related to", current_section),
-      items = list(
-        type = "object",
-        properties = item_properties
-      )
+      items = list(type = "object", properties = item_properties)
     )
-    final_schema$properties[[current_section]] <- section_schema
+    properties_for_single_exp[[current_section]] <- section_schema
   }
+  
+  single_experiment_schema <- list(
+    type = "object",
+    properties = properties_for_single_exp
+  )
+
+  final_schema <- list(
+    type = "object",
+    properties = list(
+      experiments = list(
+        type = "array",
+        description = "An array containing all unique crop-year combinations found in the article.",
+        items = single_experiment_schema
+      )
+    ),
+    required = c("cropYear")
+  )
   
   return(final_schema)
 }
@@ -338,7 +363,7 @@ tool_definition <- list(
       "Extracts and structures data from a scientific article about a crop field or modeling experiment according to the ICASA data model.",
       "The ICASA data model (provided in parameters) provide a list of standard variable names in several sections, with their respective unit and data type.",
       "The source text may describe experiments spanning multiple crops or multiple experimental years.",
-      "You MUST create a separate and complete experiment object for each unique combination of a crop and a growing season (i.e., experimental year, defined as the year of harvest) found in the text.",
+      "You MUST create a separate and complete cropYear object for each unique combination of a crop and a growing season (i.e., experimental year, defined as the year of harvest) found in the text.",
       "All extracted terms must be valid terms from the ICASA controlled vocabulary. For numeric properties (e.g., yields) units must be extracted and convert to the target unit, provided in the unit_or_type property.",
       "If a specific variable is not mentioned in the text for a given experiment, return null for this variable."
     ),
@@ -348,17 +373,16 @@ tool_definition <- list(
 
 # Generate training dataset
 generate_training_file <- function(md_folder, str_folder, output_file, tool_definition, method = "one_to_many") {
-
-  md_files <- list.files(md_folder, pattern = "\\.md$", full.names = TRUE)
-  str_files <- list.files(str_folder, pattern = "\\.json$", full.names = TRUE)
+  
+  md_files <- list.files(md_folder, pattern = "\\.md$", full.names = TRUE, ignore.case = TRUE)
+  str_files <- list.files(str_folder, pattern = "\\.json$", full.names = TRUE, ignore.case = TRUE)
   
   if (file.exists(output_file)) {
     file.remove(output_file)
   }
   
-  # The tool name is now extracted from the provided tool_definition object
   tool_name <- tool_definition$`function`$name
-
+  
   for (md_path in md_files) {
     base_name <- tools::file_path_sans_ext(basename(md_path))
     matching_json_basenames <- grep(paste0("^", base_name, "_"), basename(str_files), value = TRUE)
@@ -389,44 +413,30 @@ generate_training_file <- function(md_folder, str_folder, output_file, tool_defi
             )
           )
         ),
-        # The entire tool_definition is used here
         tools = list(tool_definition),
         parallel_tool_calls = FALSE
       )
       return(jsonlite::toJSON(final_structure, auto_unbox = TRUE))
     }
-
-    # Method One-to-Many: One output line per matching JSON file.
+    
     if (method == "one_to_many") {
       for (json_path in json_paths) {
         structured_data_string <- paste(readLines(json_path, warn = FALSE), collapse = "\n")
         json_line <- create_jsonl_entry(unstructured_text, structured_data_string)
         write(json_line, file = output_file, append = TRUE)
       }
-    } 
-    # Method One-to-One: Combine all matching JSONs into a single output line.
-    else if (method == "one_to_one") {
-      combined_r_objects <- list()
+    } else if (method == "one_to_one") {
+      crop_year_ls <- list()
       for (json_path in json_paths) {
-        # Using base R regex to extract the year to avoid dependencies
-        match_data <- regexpr("_(\\d{4})\\.json$", basename(json_path), perl = TRUE)
-        if (attr(match_data, "capture.start")[1] == -1) {
-          warning(paste("Could not extract year from filename:", basename(json_path)))
-          next
-        }
-        year_val <- substr(basename(json_path),
-                           attr(match_data, "capture.start")[1],
-                           attr(match_data, "capture.start")[1] + attr(match_data, "capture.length")[1] - 1)
-        year_key <- paste0("year_", year_val)
-        
-        # Parse each JSON to build a combined R list
+        # Each JSON file is one experiment/year
         structured_object <- jsonlite::fromJSON(json_path, simplifyVector = FALSE)
-        combined_r_objects[[year_key]] <- structured_object
+        crop_year_ls <- append(crop_year_ls, list(structured_object))
       }
-
-      if (length(combined_r_objects) > 0) {
-        # Convert the combined R list back into a single JSON string for 'arguments'.
-        combined_json_string <- jsonlite::toJSON(combined_r_objects, auto_unbox = TRUE, pretty = TRUE)
+      
+      if (length(crop_year_ls) > 0) {
+        final_combined_object <- list(cropYear = crop_year_ls)
+        
+        combined_json_string <- jsonlite::toJSON(final_combined_object, auto_unbox = TRUE, pretty = TRUE)
         json_line <- create_jsonl_entry(unstructured_text, combined_json_string)
         write(json_line, file = output_file, append = TRUE)
       }
