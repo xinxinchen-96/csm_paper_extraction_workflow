@@ -130,7 +130,8 @@ for (nm in names(data_reordered)) {
   data_merged[[nm]] <- merge_sections(ls)
 }
 
-# ---- Make treatment name matrix
+# ---- Make treatment name matrix ------------------------------------------------------------------------------------
+
 process_treatment_matrix <- function(ls) {
   
   treatments <- ls[["TREATMENTS"]]
@@ -181,7 +182,8 @@ for (nm in names(data_merged)) {
   data_merged_names[[nm]] <- process_treatment_matrix(ls)
 }
 
-# ---- Drop IDs (experiment_ID only kept in METADATA table)
+# ---- Drop IDs (experiment_ID only kept in METADATA table) ----------------------------------------------------------
+
 todrop <- c("experiment_ID", "institute_ID", "people_level", "document_ID", "revision_notes", 
             "field_level", "weather_sta_identifier", "soil_identifier", "field_id",
             "cultivar_level", "cultivar_identifier",
@@ -196,7 +198,7 @@ todrop <- c("experiment_ID", "institute_ID", "people_level", "document_ID", "rev
             "soil_analysis_level",
             "chemical_applic_level",
             "environmental_modif_lev",
-            "harvest_operations_level")  # NB: add here any column you wish to exclude from training set
+            "harvest_operations_level")  # <--- NB: add here any column you wish to exclude from training set
 
 data_merged_names_noid <- lapply(data_merged_names, function(ls) {
   lapply(names(ls), function(nm) {
@@ -207,7 +209,7 @@ data_merged_names_noid <- lapply(data_merged_names, function(ls) {
 })
 
 
-# ---- Generate json outputs
+# ---- Generate json outputs -----------------------------------------------------------------------------------------
 
 # Helper to keep empty dataframes in
 fix_empty_df <- function(df) {
@@ -230,25 +232,135 @@ lapply(names(str_data_json), function(name) {
   writeLines(str_data_json[[name]], con = file.path("./data/0_traning_set/1_template_json", paste0(name, ".json")))
 })
 
-# ---- Create training pairs
+# ---- Create training files -----------------------------------------------------------------------------------------
 
-# Helper function to generate training file
-generate_training_file <- function(md_folder, str_folder, output_file, method = "one_to_many") {
+# Set prompt
+
+
+# Fetch and format ICASA dictionary
+fetch_icasa <- function(url) {
   
+  # List of CSV filenames (you can expand this list or scrape it dynamically)
+  csv_files <- c("Metadata.csv", "Management_info.csv", "Soils_data.csv", "Weather_data.csv", "Measured_data.csv")
+  
+  # Read all CSVs into a named list
+  data_list <- lapply(csv_files, function(file) {
+    url <- paste0(url, file)
+    read.csv(url)
+  })
+  
+  out <- do.call(rbind, data_list)
+  out <- cbind(out["var_uid"], out[ , setdiff(names(out), "var_uid")])
+  row.names(out) <- NULL
+  
+  return(out)
+}
+icasa_dict <- fetch_icasa("https://raw.githubusercontent.com/DSSAT/ICASA-Dictionary/main/CSV/")
+
+icasa_dict <- icasa_dict %>%
+  filter(Subset %in% c(  # <-- Add/remove ICASA sections you want to include/exclude in the training job
+    "METADATA",
+    "MANAGEMENT",
+    "SOIL_METADATA", "SOIL_PROFILES",
+    "WEATHER_METADATA", "WEATHER_STATION",
+    "MEASURED_DATA"
+    )) %>%
+  #filter(Group %in% c("FIELDS","FERTILIZERS")) %>%  # <-- If you want to generate training file for different agents
+  mutate(section = Group,
+         variable_name = Variable_Name,  # <-- Change "Variable_Name" to "Code_Display" for short names
+         description = Description,
+         unit_or_type = Unit_or_type) %>%
+  filter(!variable_name %in% todrop) %>%  # <-- Remove IDs and variable excluded from mapping earlier
+  # TODO: add names to the TREATMENTS matrix!
+  mutate(json_type = case_when(
+    unit_or_type %in% c("text","code","date[yyyy]","date","%+code") ~ "string",
+    unit_or_type %in% c("number","year","doy","dap") ~ "integer",
+    # TODO: find booleans!
+    TRUE ~ "number"
+  )) %>%
+  select(section, variable_name, description, json_type, unit_or_type)
+
+# Generate GPT4o standard ICASA schema
+generate_icasa_schema <- function(dict) {
+
+  # Check data requirements
+  required_cols <- c("section", "variable_name", "description", "json_type", "unit_or_type")
+  if (!all(required_cols %in% names(dict))) {
+    stop("CSV must contain columns: 'section', 'variable_name', 'description', 'json_type', and 'unit_or_type'")
+  }
+  
+  # BUild the schema by looping through each section
+  final_schema <- list(
+    type = "object",
+    properties = list()
+  )
+  sections <- unique(dict$section)
+  for (current_section in sections) {
+    section_vars_df <- subset(dict, section == current_section)
+    item_properties <- list()
+    
+    # Loop through each variable in the section
+    for (i in 1:nrow(section_vars_df)) {
+      row <- section_vars_df[i, ]
+      
+      prop_list <- list(
+        type = row$json_type,
+        description = row$description
+      )
+      if (!is.na(row$unit_or_type)) {
+        prop_list$unit_or_type <- row$unit_or_type
+      }
+      item_properties[[row$variable_name]] <- prop_list
+    }
+    
+    # Assemble the final structure for the section
+    section_schema <- list(
+      type = "array",
+      description = paste("Data related to", current_section),
+      items = list(
+        type = "object",
+        properties = item_properties
+      )
+    )
+    final_schema$properties[[current_section]] <- section_schema
+  }
+  
+  return(final_schema)
+}
+icasa_schema <- generate_icasa_schema(icasa_dict)
+
+# Assemble tool definition payload
+tool_definition <- list(
+  type = "function",
+  `function` = list(
+    name = "text_to_icasa",
+    description = paste(  # <-- Specify your training instructions
+      "Extracts and structures data from a scientific article about a crop field or modeling experiment according to the ICASA data model.",
+      "The ICASA data model (provided in parameters) provide a list of standard variable names in several sections, with their respective unit and data type.",
+      "The source text may describe experiments spanning multiple crops or multiple experimental years.",
+      "You MUST create a separate and complete experiment object for each unique combination of a crop and a growing season (i.e., experimental year, defined as the year of harvest) found in the text.",
+      "All extracted terms must be valid terms from the ICASA controlled vocabulary. For numeric properties (e.g., yields) units must be extracted and convert to the target unit, provided in the unit_or_type property.",
+      "If a specific variable is not mentioned in the text for a given experiment, return null for this variable."
+    ),
+    parameters = icasa_schema  # <-- the ICASA dictionary we generated in step ##
+  )
+)
+
+# Generate training dataset
+generate_training_file <- function(md_folder, str_folder, output_file, tool_definition, method = "one_to_many") {
+
   md_files <- list.files(md_folder, pattern = "\\.md$", full.names = TRUE)
   str_files <- list.files(str_folder, pattern = "\\.json$", full.names = TRUE)
   
-  # Ensure the output file is clean before starting
   if (file.exists(output_file)) {
     file.remove(output_file)
   }
   
+  # The tool name is now extracted from the provided tool_definition object
+  tool_name <- tool_definition$`function`$name
+
   for (md_path in md_files) {
-    
-    # Derive base name (e.g., "AuthorYYYY" from ".../AuthorYYYY.md")
     base_name <- tools::file_path_sans_ext(basename(md_path))
-    
-    # Find all corresponding JSON files for this paper
     matching_json_basenames <- grep(paste0("^", base_name, "_"), basename(str_files), value = TRUE)
     
     if (length(matching_json_basenames) == 0) {
@@ -256,48 +368,66 @@ generate_training_file <- function(md_folder, str_folder, output_file, method = 
       next
     }
     
-    # Reconstruct the full paths for the matching JSON files
     json_paths <- file.path(str_folder, matching_json_basenames)
-    
-    # Read the unstructured text content once per paper
     unstructured_text <- paste(readLines(md_path, warn = FALSE), collapse = "\n")
     
-    # Method One-to-Many (One pair per year)
+    create_jsonl_entry <- function(user_content, tool_arguments_string) {
+      final_structure <- list(
+        messages = list(
+          list(role = "user", content = user_content),
+          list(
+            role = "assistant",
+            tool_calls = list(
+              list(
+                id = paste0("call_", gsub("[^a-zA-Z0-9]", "", base_name), "_", sample(1e6, 1)),
+                type = "function",
+                `function` = list(
+                  name = tool_name,
+                  arguments = tool_arguments_string
+                )
+              )
+            )
+          )
+        ),
+        # The entire tool_definition is used here
+        tools = list(tool_definition),
+        parallel_tool_calls = FALSE
+      )
+      return(jsonlite::toJSON(final_structure, auto_unbox = TRUE))
+    }
+
+    # Method One-to-Many: One output line per matching JSON file.
     if (method == "one_to_many") {
       for (json_path in json_paths) {
-
         structured_data_string <- paste(readLines(json_path, warn = FALSE), collapse = "\n")
-        # Create the prompt-completion pair
-        final_pair <- list(prompt = unstructured_text, completion = structured_data_string)
-        # Convert to a single JSON line and write to the output file
-        json_line <- toJSON(final_pair, auto_unbox = TRUE)
+        json_line <- create_jsonl_entry(unstructured_text, structured_data_string)
         write(json_line, file = output_file, append = TRUE)
       }
     } 
-    # Method One-to-One (One pair per paper)
+    # Method One-to-One: Combine all matching JSONs into a single output line.
     else if (method == "one_to_one") {
-      # This list will hold the parsed R objects for each year's JSON
       combined_r_objects <- list()
-      
       for (json_path in json_paths) {
-        year_match <- str_match(basename(json_path), "_(\\d{4})\\.json$")
-        if (is.na(year_match[1, 2])) {
+        # Using base R regex to extract the year to avoid dependencies
+        match_data <- regexpr("_(\\d{4})\\.json$", basename(json_path), perl = TRUE)
+        if (attr(match_data, "capture.start")[1] == -1) {
           warning(paste("Could not extract year from filename:", basename(json_path)))
           next
         }
-        year_key <- paste0("year_", year_match[1, 2])
+        year_val <- substr(basename(json_path),
+                           attr(match_data, "capture.start")[1],
+                           attr(match_data, "capture.start")[1] + attr(match_data, "capture.length")[1] - 1)
+        year_key <- paste0("year_", year_val)
         
-        structured_data_string <- paste(readLines(json_path, warn = FALSE), collapse = "\n")
-        structured_object <- fromJSON(structured_data_string, simplifyVector = FALSE)
+        # Parse each JSON to build a combined R list
+        structured_object <- jsonlite::fromJSON(json_path, simplifyVector = FALSE)
         combined_r_objects[[year_key]] <- structured_object
       }
-      
+
       if (length(combined_r_objects) > 0) {
-        completion_string <- toJSON(combined_r_objects, auto_unbox = TRUE, pretty = TRUE)
-        # Create the final prompt-completion pair
-        final_pair <- list(prompt = unstructured_text, completion = completion_string)
-        # Convert to a single JSON line and write to the output file
-        json_line <- toJSON(final_pair, auto_unbox = TRUE)
+        # Convert the combined R list back into a single JSON string for 'arguments'.
+        combined_json_string <- jsonlite::toJSON(combined_r_objects, auto_unbox = TRUE, pretty = TRUE)
+        json_line <- create_jsonl_entry(unstructured_text, combined_json_string)
         write(json_line, file = output_file, append = TRUE)
       }
     }
@@ -306,14 +436,17 @@ generate_training_file <- function(md_folder, str_folder, output_file, method = 
   invisible(output_file)
 }
 
+
+
 # SCENARIO #1: one-to-one = one large training pair per pdf
 # >>> less total token count (should be no token limit for total size anyways)
 # >>> higher risk of single-response token limit
 # >>> less focused learning task (less accurate??)
 generate_training_file(
-  md_folder = "./data/0_traning_set/0_tokenized_pdfs",  # markown folder
-  str_folder = "./data/0_traning_set/1_template_json",  # json folder
-  output_file = "./data/0_traning_set/text2icasa_traning_data_1to1.jsonl",  # training data name
+  md_folder = "./data/0_training_set/0_tokenized_pdfs",  # markown folder
+  str_folder = "./data/0_training_set/1_template_json",  # json folder
+  output_file = "./data/0_training_set/text2icasa_training_data_1to1.jsonl",  # training data name
+  tool_definition = tool_definition,  # the ICASA dict
   method = "one_to_one" 
 )
 
@@ -322,9 +455,10 @@ generate_training_file(
 # >>> lower risk of single-response token limit (single training files are smaller)
 # >>> more focused learning task (potantially more accurate)
 generate_training_file(
-  md_folder = "./data/0_traning_set/0_tokenized_pdfs",  # markown folder
-  str_folder = "./data/0_traning_set/1_template_json",  # json folder
-  output_file = "./data/0_traning_set/text2icasa_traning_data_1toMany.jsonl",  # training data name
+  md_folder = "./data/0_training_set/0_tokenized_pdfs",  # markown folder
+  str_folder = "./data/0_training_set/1_template_json",  # json folder
+  output_file = "./data/0_training_set/text2icasa_training_data_1toN.jsonl",  # training data name
+  tool_definition = tool_definition,  # the ICASA dict
   method = "one_to_many" 
 )
 
